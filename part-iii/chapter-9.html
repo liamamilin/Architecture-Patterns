@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>15&nbsp; Microservices Pattern – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-iii/chapter-8.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -474,6 +474,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#communication-mechanisms" id="toc-communication-mechanisms" class="nav-link" data-scroll-target="#communication-mechanisms"><span class="header-section-number">15.0.2</span> Communication Mechanisms</a></li>
   <li><a href="#data-ownership-and-persistence" id="toc-data-ownership-and-persistence" class="nav-link" data-scroll-target="#data-ownership-and-persistence"><span class="header-section-number">15.0.3</span> Data Ownership and Persistence</a></li>
   <li><a href="#pattern-signature" id="toc-pattern-signature" class="nav-link" data-scroll-target="#pattern-signature"><span class="header-section-number">15.0.4</span> Pattern Signature</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-core-design-decisions" id="toc-must-remember-core-design-decisions" class="nav-link" data-scroll-target="#must-remember-core-design-decisions"><span class="header-section-number">15.1.1</span> Must-Remember: Core Design Decisions</a></li>
+  <li><a href="#must-remember-when-to-adopt" id="toc-must-remember-when-to-adopt" class="nav-link" data-scroll-target="#must-remember-when-to-adopt"><span class="header-section-number">15.1.2</span> Must-Remember: When to Adopt</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">15.1.3</span> Common Pitfalls</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -548,8 +554,85 @@ ul.task-list li input[type="checkbox"] {
 <p>The microservices pattern represents a structural approach to managing complexity in large-scale systems.</p>
 <p>By aligning services with domain responsibilities and enabling independent deployment, the architecture allows systems to evolve incrementally and teams to operate autonomously.</p>
 <p>At the same time, the pattern introduces new challenges related to distributed communication, operational observability, and data consistency. Successful microservices architectures therefore require disciplined boundary design and robust operational infrastructure to support the distributed system environment.</p>
+</section>
+<section id="summary" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">15.1</span> Summary</h2>
+<p>The Microservices pattern decomposes a system into <strong>independently deployable services</strong>, each aligned with a specific business capability.</p>
+<section id="must-remember-core-design-decisions" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="must-remember-core-design-decisions"><span class="header-section-number">15.1.1</span> Must-Remember: Core Design Decisions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Service boundaries</strong></td>
+<td>Align with <strong>bounded contexts</strong> (Domain-Driven Design); each service owns a coherent business capability</td>
+</tr>
+<tr class="even">
+<td><strong>Communication</strong></td>
+<td>Synchronous (HTTP/RPC) for immediate responses; asynchronous (events/messaging) for decoupled, resilient interaction</td>
+</tr>
+<tr class="odd">
+<td><strong>Data ownership</strong></td>
+<td><strong>Database per service</strong> — each service owns its persistence; others access data only through the service’s API</td>
+</tr>
+<tr class="even">
+<td><strong>Infrastructure</strong></td>
+<td>API gateway (routing), service discovery (dynamic location), and messaging infrastructure are required additions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-when-to-adopt" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="must-remember-when-to-adopt"><span class="header-section-number">15.1.2</span> Must-Remember: When to Adopt</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Adopt When…</th>
+<th>Avoid When…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Teams need independent deployment cycles</td>
+<td>System scale doesn’t justify operational complexity</td>
+</tr>
+<tr class="even">
+<td>Different services have different scaling requirements</td>
+<td>Team lacks operational maturity (CI/CD, monitoring, incident response)</td>
+</tr>
+<tr class="odd">
+<td>Organizational structure aligns with service boundaries (Conway’s Law)</td>
+<td>Services would be tightly coupled, creating a “distributed monolith”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">15.1.3</span> Common Pitfalls</h3>
+<ul>
+<li><strong>Poorly defined boundaries</strong> → tight coupling across services, distributed monolith behavior.</li>
+<li><strong>Premature adoption</strong> → operational overhead without corresponding benefits.</li>
+<li><strong>Shared databases</strong> → breaks service autonomy, creates hidden coupling.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Microservices are an operational trade, not just an architectural one.</strong> The operational complexity they introduce must be actively managed through mature infrastructure and disciplined boundary design.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

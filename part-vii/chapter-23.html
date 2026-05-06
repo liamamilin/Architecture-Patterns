@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>29&nbsp; Mining Patterns from Repositories (Bridge to Extraction) – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-vii/chapter-22.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -474,7 +474,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#clustering-blueprint-instances" id="toc-clustering-blueprint-instances" class="nav-link" data-scroll-target="#clustering-blueprint-instances"><span class="header-section-number">29.0.2</span> Clustering Blueprint Instances</a></li>
   <li><a href="#human-in-the-loop-abstraction" id="toc-human-in-the-loop-abstraction" class="nav-link" data-scroll-target="#human-in-the-loop-abstraction"><span class="header-section-number">29.0.3</span> Human-in-the-Loop Abstraction</a></li>
   <li><a href="#from-candidate-to-standard-library-entry" id="toc-from-candidate-to-standard-library-entry" class="nav-link" data-scroll-target="#from-candidate-to-standard-library-entry"><span class="header-section-number">29.0.4</span> From Candidate to Standard Library Entry</a></li>
-  <li><a href="#from-pattern-discovery-to-pattern-catalog-specification" id="toc-from-pattern-discovery-to-pattern-catalog-specification" class="nav-link" data-scroll-target="#from-pattern-discovery-to-pattern-catalog-specification"><span class="header-section-number">29.1</span> From Pattern Discovery to Pattern Catalog Specification</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">29.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-the-mining-pipeline" id="toc-must-remember-the-mining-pipeline" class="nav-link" data-scroll-target="#must-remember-the-mining-pipeline"><span class="header-section-number">29.1.1</span> Must-Remember: The Mining Pipeline</a></li>
+  <li><a href="#must-remember-key-principles" id="toc-must-remember-key-principles" class="nav-link" data-scroll-target="#must-remember-key-principles"><span class="header-section-number">29.1.2</span> Must-Remember: Key Principles</a></li>
+  </ul></li>
+  <li><a href="#from-pattern-discovery-to-pattern-catalog-specification" id="toc-from-pattern-discovery-to-pattern-catalog-specification" class="nav-link" data-scroll-target="#from-pattern-discovery-to-pattern-catalog-specification"><span class="header-section-number">29.2</span> From Pattern Discovery to Pattern Catalog Specification</a></li>
   </ul>
 </nav>
     </div>
@@ -551,10 +556,99 @@ ul.task-list li input[type="checkbox"] {
 <p>The mining process described in this chapter establishes a bridge between real-world software repositories and the pattern catalog defined in this book.</p>
 <p>By extracting blueprint structures from repositories, clustering recurring architectural forms, and refining them through human interpretation, the framework creates a systematic pipeline for discovering new architectural patterns.</p>
 <p>This process ensures that the pattern library remains grounded in empirical architectural practice while continuing to evolve as new system designs emerge.</p>
+</section>
+<section id="summary" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">29.1</span> Summary</h2>
+<p>Pattern mining establishes a <strong>systematic pipeline</strong> from real-world repository signals to validated pattern definitions, bridging the gap between architectural practice and formal pattern libraries.</p>
+<section id="must-remember-the-mining-pipeline" class="level3" data-number="29.1.1">
+<h3 data-number="29.1.1" class="anchored" data-anchor-id="must-remember-the-mining-pipeline"><span class="header-section-number">29.1.1</span> Must-Remember: The Mining Pipeline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 46%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>What Happens</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Signal detection</strong></td>
+<td>Analyze repositories for structural clues (dependencies, config, directory structure)</td>
+<td>Pattern candidates</td>
+</tr>
+<tr class="even">
+<td><strong>Blueprint extraction</strong></td>
+<td>Construct blueprint representations from repository artifacts</td>
+<td>System blueprints</td>
+</tr>
+<tr class="odd">
+<td><strong>Clustering</strong></td>
+<td>Group similar blueprint instances to detect recurring structural forms</td>
+<td>Candidate pattern families</td>
+</tr>
+<tr class="even">
+<td><strong>Human-in-the-loop abstraction</strong></td>
+<td>Architects identify structural invariants and define problem/context/trade-offs</td>
+<td>Pattern draft</td>
+</tr>
+<tr class="odd">
+<td><strong>Validation</strong></td>
+<td>Verify the pattern appears consistently across additional systems</td>
+<td>Validated pattern</td>
+</tr>
+<tr class="even">
+<td><strong>Catalog entry</strong></td>
+<td>Formalize as a standard library entry with schema, signature, and tags</td>
+<td>Standard library entry</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-key-principles" class="level3" data-number="29.1.2">
+<h3 data-number="29.1.2" class="anchored" data-anchor-id="must-remember-key-principles"><span class="header-section-number">29.1.2</span> Must-Remember: Key Principles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Patterns come from real systems, not theory</strong></td>
+<td>Every pattern in this catalog emerged from repeated observation of real architectures solving similar problems</td>
+</tr>
+<tr class="even">
+<td><strong>Clustering over blueprints, not documents</strong></td>
+<td>Structural similarity is detected in blueprint graphs, not in narrative descriptions</td>
+</tr>
+<tr class="odd">
+<td><strong>Humans are essential</strong></td>
+<td>Automated analysis detects structural similarities, but only humans can determine whether a cluster represents a meaningful pattern with coherent intent and trade-offs</td>
+</tr>
+<tr class="even">
+<td><strong>Pipeline must be grounded in evidence</strong></td>
+<td>Every pattern inference must be traceable back to observable repository signals</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Patterns are discovered, not invented.</strong> The mining pipeline ensures the catalog remains empirically grounded—new patterns emerge from real architectural practice, validated across multiple systems before admission to the standard library.</p>
+</blockquote>
 <hr>
 </section>
-<section id="from-pattern-discovery-to-pattern-catalog-specification" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="from-pattern-discovery-to-pattern-catalog-specification"><span class="header-section-number">29.1</span> From Pattern Discovery to Pattern Catalog Specification</h2>
+</section>
+<section id="from-pattern-discovery-to-pattern-catalog-specification" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="from-pattern-discovery-to-pattern-catalog-specification"><span class="header-section-number">29.2</span> From Pattern Discovery to Pattern Catalog Specification</h2>
 <p>The previous chapters have established a complete framework for architectural patterns:</p>
 <ul>
 <li><p><strong>Pattern Theory</strong> (Part I) defined what patterns are and how they operate at different levels of abstraction</p></li>

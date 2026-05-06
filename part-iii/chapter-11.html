@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>17&nbsp; Pipeline Pattern – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-iii/chapter-10.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -474,7 +474,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#batch-and-streaming-pipelines" id="toc-batch-and-streaming-pipelines" class="nav-link" data-scroll-target="#batch-and-streaming-pipelines"><span class="header-section-number">17.0.2</span> Batch and Streaming Pipelines</a></li>
   <li><a href="#data-contracts-and-schema-evolution" id="toc-data-contracts-and-schema-evolution" class="nav-link" data-scroll-target="#data-contracts-and-schema-evolution"><span class="header-section-number">17.0.3</span> Data Contracts and Schema Evolution</a></li>
   <li><a href="#pattern-signature" id="toc-pattern-signature" class="nav-link" data-scroll-target="#pattern-signature"><span class="header-section-number">17.0.4</span> Pattern Signature</a></li>
-  <li><a href="#from-foundational-patterns-to-high-leverage-patterns" id="toc-from-foundational-patterns-to-high-leverage-patterns" class="nav-link" data-scroll-target="#from-foundational-patterns-to-high-leverage-patterns"><span class="header-section-number">17.1</span> From Foundational Patterns to High-Leverage Patterns</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">17.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-core-structural-elements" id="toc-must-remember-core-structural-elements" class="nav-link" data-scroll-target="#must-remember-core-structural-elements"><span class="header-section-number">17.1.1</span> Must-Remember: Core Structural Elements</a></li>
+  <li><a href="#must-remember-batch-vs.-streaming" id="toc-must-remember-batch-vs.-streaming" class="nav-link" data-scroll-target="#must-remember-batch-vs.-streaming"><span class="header-section-number">17.1.2</span> Must-Remember: Batch vs.&nbsp;Streaming</a></li>
+  <li><a href="#must-remember-data-contracts" id="toc-must-remember-data-contracts" class="nav-link" data-scroll-target="#must-remember-data-contracts"><span class="header-section-number">17.1.3</span> Must-Remember: Data Contracts</a></li>
+  </ul></li>
+  <li><a href="#from-foundational-patterns-to-high-leverage-patterns" id="toc-from-foundational-patterns-to-high-leverage-patterns" class="nav-link" data-scroll-target="#from-foundational-patterns-to-high-leverage-patterns"><span class="header-section-number">17.2</span> From Foundational Patterns to High-Leverage Patterns</a></li>
   </ul>
 </nav>
     </div>
@@ -544,10 +550,98 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p>The pipeline pattern provides a powerful abstraction for systems in which data processing can be decomposed into sequential transformations.</p>
 <p>By organizing processing logic into independent stages connected by data flows, pipelines improve system modularity and make complex processing workflows easier to understand, scale, and evolve.</p>
+</section>
+<section id="summary" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">17.1</span> Summary</h2>
+<p>The Pipeline pattern structures a system as a <strong>sequence of processing stages</strong> where data flows progressively through incremental transformations.</p>
+<section id="must-remember-core-structural-elements" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="must-remember-core-structural-elements"><span class="header-section-number">17.1.1</span> Must-Remember: Core Structural Elements</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stage</strong></td>
+<td>Processing unit that receives input, transforms it, and produces output</td>
+</tr>
+<tr class="even">
+<td><strong>Transform</strong></td>
+<td>The specific operation performed by a stage (filter, aggregate, enrich, validate)</td>
+</tr>
+<tr class="odd">
+<td><strong>Sink</strong></td>
+<td>Endpoint that consumes the final output (database, file system, downstream service)</td>
+</tr>
+<tr class="even">
+<td><strong>Data flow edge</strong></td>
+<td>Directed connection representing the movement of data between stages</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-batch-vs.-streaming" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="must-remember-batch-vs.-streaming"><span class="header-section-number">17.1.2</span> Must-Remember: Batch vs.&nbsp;Streaming</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 35%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Batch Pipeline</th>
+<th>Streaming Pipeline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data unit</strong></td>
+<td>Discrete collections (batches)</td>
+<td>Continuous events/records</td>
+</tr>
+<tr class="even">
+<td><strong>Execution</strong></td>
+<td>Scheduled jobs</td>
+<td>Long-running, event-triggered</td>
+</tr>
+<tr class="odd">
+<td><strong>Use case</strong></td>
+<td>Periodic analytics, reporting, ETL</td>
+<td>Real-time monitoring, event processing</td>
+</tr>
+<tr class="even">
+<td><strong>State</strong></td>
+<td>Stateless within a batch</td>
+<td>May maintain windowed state</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-data-contracts" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="must-remember-data-contracts"><span class="header-section-number">17.1.3</span> Must-Remember: Data Contracts</h3>
+<ul>
+<li>Every stage expects a defined input schema and produces a defined output schema → these are <strong>data contracts</strong>.</li>
+<li>Schema changes must be managed through <strong>versioning</strong> and <strong>backward-compatible evolution</strong>.</li>
+<li>Without explicit data contracts, a change in one stage can silently break downstream stages.</li>
+<li><strong>Triggers</strong> initiate pipeline execution: job schedulers (batch) or incoming data events (streaming).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Pipelines are the universal abstraction for sequential data processing.</strong> Their power comes from decomposition: complex transformations are broken into independent, reusable stages connected by explicit data flow contracts.</p>
+</blockquote>
 <hr>
 </section>
-<section id="from-foundational-patterns-to-high-leverage-patterns" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="from-foundational-patterns-to-high-leverage-patterns"><span class="header-section-number">17.1</span> From Foundational Patterns to High-Leverage Patterns</h2>
+</section>
+<section id="from-foundational-patterns-to-high-leverage-patterns" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="from-foundational-patterns-to-high-leverage-patterns"><span class="header-section-number">17.2</span> From Foundational Patterns to High-Leverage Patterns</h2>
 <p>The five patterns presented in Part III—Layered System, Modular Monolith, Microservices, Event-Driven System, and Pipeline—represent foundational architectural structures. These patterns are widely applicable and appear in many systems across diverse domains. They establish the structural vocabulary of system architecture.</p>
 <p>However, architectural complexity often requires more specialized structures that address specific operational concerns or enable advanced capabilities. These structures are introduced in <strong>Part IV: High-Leverage System Patterns</strong>.</p>
 <p>Part IV presents patterns that can directly populate blueprint structures and serve as “blueprint generators”—complex architectural units that provide significant structural and operational capabilities:</p>

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>22&nbsp; Multi-Tenant Platform Pattern – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-iv/chapter-15.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -473,7 +473,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tenant-isolation" id="toc-tenant-isolation" class="nav-link active" data-scroll-target="#tenant-isolation"><span class="header-section-number">22.0.1</span> Tenant Isolation</a></li>
   <li><a href="#metering-billing-and-quotas" id="toc-metering-billing-and-quotas" class="nav-link" data-scroll-target="#metering-billing-and-quotas"><span class="header-section-number">22.0.2</span> Metering, Billing, and Quotas</a></li>
   <li><a href="#pattern-signature" id="toc-pattern-signature" class="nav-link" data-scroll-target="#pattern-signature"><span class="header-section-number">22.0.3</span> Pattern Signature</a></li>
-  <li><a href="#from-high-leverage-patterns-to-cross-cutting-patterns" id="toc-from-high-leverage-patterns-to-cross-cutting-patterns" class="nav-link" data-scroll-target="#from-high-leverage-patterns-to-cross-cutting-patterns"><span class="header-section-number">22.1</span> From High-Leverage Patterns to Cross-Cutting Patterns</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">22.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-three-dimensions-of-isolation" id="toc-must-remember-three-dimensions-of-isolation" class="nav-link" data-scroll-target="#must-remember-three-dimensions-of-isolation"><span class="header-section-number">22.1.1</span> Must-Remember: Three Dimensions of Isolation</a></li>
+  <li><a href="#must-remember-governance-mechanisms" id="toc-must-remember-governance-mechanisms" class="nav-link" data-scroll-target="#must-remember-governance-mechanisms"><span class="header-section-number">22.1.2</span> Must-Remember: Governance Mechanisms</a></li>
+  <li><a href="#key-insight" id="toc-key-insight" class="nav-link" data-scroll-target="#key-insight"><span class="header-section-number">22.1.3</span> Key Insight</a></li>
+  </ul></li>
+  <li><a href="#from-high-leverage-patterns-to-cross-cutting-patterns" id="toc-from-high-leverage-patterns-to-cross-cutting-patterns" class="nav-link" data-scroll-target="#from-high-leverage-patterns-to-cross-cutting-patterns"><span class="header-section-number">22.2</span> From High-Leverage Patterns to Cross-Cutting Patterns</a></li>
   </ul>
 </nav>
     </div>
@@ -534,10 +540,88 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p>The multi-tenant platform pattern enables efficient resource sharing while maintaining strong guarantees of tenant separation.</p>
 <p>By combining identity models, isolation boundaries, and resource governance mechanisms, the architecture allows a single platform to support large numbers of tenants without requiring separate infrastructure deployments for each user or organization.</p>
+</section>
+<section id="summary" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">22.1</span> Summary</h2>
+<p>The Multi-Tenant Platform pattern enables a single system to <strong>serve multiple independent tenants</strong> within shared infrastructure while enforcing strong isolation guarantees.</p>
+<section id="must-remember-three-dimensions-of-isolation" class="level3" data-number="22.1.1">
+<h3 data-number="22.1.1" class="anchored" data-anchor-id="must-remember-three-dimensions-of-isolation"><span class="header-section-number">22.1.1</span> Must-Remember: Three Dimensions of Isolation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>What It Protects</th>
+<th>Implementation Strategies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data isolation</strong></td>
+<td>Tenant data separation</td>
+<td>Tenant ID in shared DB → dedicated schemas → fully isolated storage (escalating security)</td>
+</tr>
+<tr class="even">
+<td><strong>Compute isolation</strong></td>
+<td>Workload non-interference</td>
+<td>Containerization, virtualization, resource quotas, scheduling policies</td>
+</tr>
+<tr class="odd">
+<td><strong>Network isolation</strong></td>
+<td>Communication privacy</td>
+<td>Network segmentation, service identity, secure routing</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-governance-mechanisms" class="level3" data-number="22.1.2">
+<h3 data-number="22.1.2" class="anchored" data-anchor-id="must-remember-governance-mechanisms"><span class="header-section-number">22.1.2</span> Must-Remember: Governance Mechanisms</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mechanism</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Metering</strong></td>
+<td>Track compute, storage, API calls, and other resource usage per tenant</td>
+</tr>
+<tr class="even">
+<td><strong>Billing/Chargeback</strong></td>
+<td>Convert usage into cost models for commercial or internal allocation</td>
+</tr>
+<tr class="odd">
+<td><strong>Quota policies</strong></td>
+<td>Limit resource consumption to prevent one tenant from starving others</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-insight" class="level3" data-number="22.1.3">
+<h3 data-number="22.1.3" class="anchored" data-anchor-id="key-insight"><span class="header-section-number">22.1.3</span> Key Insight</h3>
+<ul>
+<li><strong>The tenant model is foundational</strong>: every resource, identity, and permission must be associated with a tenant identifier. Without an explicit tenant model, isolation cannot be enforced.</li>
+<li><strong>Isolation is a spectrum, not binary</strong>: the right level depends on the security/compliance requirements. Shared-database-with-tenant-ID is cheaper but weaker; dedicated-per-tenant infrastructure is stronger but more expensive.</li>
+<li><strong>Multi-tenancy is the architectural pattern behind SaaS</strong>: it enables infrastructure cost efficiency at scale while maintaining the perception of a private system for each tenant.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Multi-tenancy is the architecture of efficiency without sacrificing separation.</strong> The challenge is choosing the right isolation level for each dimension based on trust, compliance, and cost requirements.</p>
+</blockquote>
 <hr>
 </section>
-<section id="from-high-leverage-patterns-to-cross-cutting-patterns" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="from-high-leverage-patterns-to-cross-cutting-patterns"><span class="header-section-number">22.1</span> From High-Leverage Patterns to Cross-Cutting Patterns</h2>
+</section>
+<section id="from-high-leverage-patterns-to-cross-cutting-patterns" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="from-high-leverage-patterns-to-cross-cutting-patterns"><span class="header-section-number">22.2</span> From High-Leverage Patterns to Cross-Cutting Patterns</h2>
 <p>The patterns in Part IV introduce complex architectural machinery that addresses specific operational challenges: workflow orchestration, asynchronous task execution, extensibility, policy governance, and multi-tenancy. These patterns provide substantial architectural capabilities and can directly populate blueprint structures.</p>
 <p>However, real-world systems also require capabilities that cut across multiple architectural layers and subsystems. These <strong>cross-cutting concerns</strong>—such as observability, resilience, and security—apply regardless of which high-level patterns are in use.</p>
 <p><strong>Part V: Reliability &amp; Trust Patterns</strong> introduces these cross-cutting patterns:</p>

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>28&nbsp; How to Curate a Standard Library – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-vi/chapter-21.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -477,6 +477,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#anti-patterns-as-negative-samples" id="toc-anti-patterns-as-negative-samples" class="nav-link" data-scroll-target="#anti-patterns-as-negative-samples"><span class="header-section-number">28.1.3</span> Anti-Patterns as Negative Samples</a></li>
   <li><a href="#pattern-library-governance" id="toc-pattern-library-governance" class="nav-link" data-scroll-target="#pattern-library-governance"><span class="header-section-number">28.1.4</span> Pattern Library Governance</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">28.2</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-pattern-inclusion-criteria" id="toc-must-remember-pattern-inclusion-criteria" class="nav-link" data-scroll-target="#must-remember-pattern-inclusion-criteria"><span class="header-section-number">28.2.1</span> Must-Remember: Pattern Inclusion Criteria</a></li>
+  <li><a href="#must-remember-library-governance" id="toc-must-remember-library-governance" class="nav-link" data-scroll-target="#must-remember-library-governance"><span class="header-section-number">28.2.2</span> Must-Remember: Library Governance</a></li>
+  <li><a href="#key-insight" id="toc-key-insight" class="nav-link" data-scroll-target="#key-insight"><span class="header-section-number">28.2.3</span> Key Insight</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -563,6 +569,88 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p>The curation principles described in this chapter ensure that the pattern catalog evolves into a reliable repository of architectural knowledge.</p>
 <p>By enforcing inclusion criteria, managing pattern evolution, documenting anti-patterns, and maintaining governance processes, the pattern library becomes a structured and trustworthy resource that supports both human architects and automated architecture intelligence systems.</p>
+</section>
+</section>
+<section id="summary" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">28.2</span> Summary</h2>
+<p>A pattern library must be curated with the same discipline as a software library or formal ontology. Without clear curation rules, the collection becomes inconsistent, redundant, and untrustworthy.</p>
+<section id="must-remember-pattern-inclusion-criteria" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="must-remember-pattern-inclusion-criteria"><span class="header-section-number">28.2.1</span> Must-Remember: Pattern Inclusion Criteria</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 25%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Meaning</th>
+<th>Why Essential</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stability</strong></td>
+<td>Appears repeatedly across independent systems</td>
+<td>A one-off structure is not a pattern</td>
+</tr>
+<tr class="even">
+<td><strong>Generality</strong></td>
+<td>Applies across multiple domains or system types</td>
+<td>Domain-specific structures don’t belong in a general library</td>
+</tr>
+<tr class="odd">
+<td><strong>Recognizability</strong></td>
+<td>Has a clear structural signature detectable in blueprints</td>
+<td>If it can’t be identified, it can’t be a reliable knowledge object</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-library-governance" class="level3" data-number="28.2.2">
+<h3 data-number="28.2.2" class="anchored" data-anchor-id="must-remember-library-governance"><span class="header-section-number">28.2.2</span> Must-Remember: Library Governance</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Versioning</strong></td>
+<td>Patterns evolve (new variants, refined signatures); versioning ensures compatibility with earlier blueprints</td>
+</tr>
+<tr class="even">
+<td><strong>Anti-patterns</strong></td>
+<td>Documented failure modes serve as negative samples—helping architects recognize problematic designs and training automated detection</td>
+</tr>
+<tr class="odd">
+<td><strong>Naming conventions</strong></td>
+<td>Stable, unambiguous identifiers ensure patterns are referenceable across all tools and artifacts</td>
+</tr>
+<tr class="even">
+<td><strong>Quality review</strong></td>
+<td>Expert evaluation verifies inclusion criteria before a pattern enters the standard library</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-insight" class="level3" data-number="28.2.3">
+<h3 data-number="28.2.3" class="anchored" data-anchor-id="key-insight"><span class="header-section-number">28.2.3</span> Key Insight</h3>
+<ul>
+<li><strong>Patterns are living artifacts</strong>: the catalog is not a fixed document—Pattern Catalog v0.1 is the first version of an evolving knowledge base.</li>
+<li><strong>Anti-patterns are as valuable as patterns</strong>: recognizing how structures commonly fail is essential for both human architects and automated analysis systems.</li>
+<li><strong>Governance scales trust</strong>: as the library grows, consistent naming, classification, and review processes ensure it remains a reliable resource.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>A pattern library is only as good as its curation.</strong> Stability, generality, and recognizability are the gatekeepers—every pattern must earn its place in the catalog through demonstrated cross-system recurrence.</p>
+</blockquote>
 
 
 </section>

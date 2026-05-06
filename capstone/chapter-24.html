@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>30&nbsp; Pattern Catalog v0.1 Specification – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-vii/chapter-23.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -592,6 +592,98 @@ The security view identifies trust boundaries and policy enforcement mechanisms.
 <p>This volume introduced a framework for representing architectural patterns as structured knowledge objects.</p>
 <p>Patterns were defined as reusable structural solutions that capture stable arrangements of components, interfaces, data flows, and workflows. By expressing these structures through formal schemas and pattern signatures, patterns become computational artifacts that can be stored, indexed, and analyzed systematically.</p>
 <p>The pattern catalog introduced in this book transforms architectural patterns from informal design advice into a structured architecture knowledge base.</p>
+<section id="must-remember-pattern-catalog-v0.1-at-a-glance" class="level4" data-number="30.1.5.1">
+<h4 data-number="30.1.5.1" class="anchored" data-anchor-id="must-remember-pattern-catalog-v0.1-at-a-glance"><span class="header-section-number">30.1.5.1</span> Must-Remember: Pattern Catalog v0.1 at a Glance</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 38%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>What It Defines</th>
+<th>Key Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pattern Theory</strong> (Part I)</td>
+<td>What patterns are, their levels (Pattern Stack), and their graph representation</td>
+<td>Five-element grammar (Intent, Context, Forces, Structure, Consequences)</td>
+</tr>
+<tr class="even">
+<td><strong>Catalog Schema</strong> (Part II)</td>
+<td>How patterns are described, identified, and organized</td>
+<td>Object Model + Pattern Signature + Tagging System</td>
+</tr>
+<tr class="odd">
+<td><strong>Pattern Library</strong> (Parts III-V)</td>
+<td>Curated collection of architectural patterns</td>
+<td>Foundational patterns, high-leverage patterns, cross-cutting patterns</td>
+</tr>
+<tr class="even">
+<td><strong>Composition Readiness</strong> (Part VI)</td>
+<td>How patterns combine into coherent architectures</td>
+<td>Conflict types + Pattern-to-Blueprint mapping rules</td>
+</tr>
+<tr class="odd">
+<td><strong>Library Operations</strong> (Part VII)</td>
+<td>How the pattern library is curated and evolved</td>
+<td>Inclusion criteria, governance, pattern mining pipeline</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-the-three-properties-patterns-enable" class="level4" data-number="30.1.5.2">
+<h4 data-number="30.1.5.2" class="anchored" data-anchor-id="must-remember-the-three-properties-patterns-enable"><span class="header-section-number">30.1.5.2</span> Must-Remember: The Three Properties Patterns Enable</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 21%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Meaning</th>
+<th>How Patterns Deliver It</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reusability</strong></td>
+<td>New systems are built from existing pattern selections</td>
+<td>Patterns provide pre-defined structural solutions—designers don’t start from scratch</td>
+</tr>
+<tr class="even">
+<td><strong>Composability</strong></td>
+<td>Multiple patterns can be combined into larger architectures</td>
+<td>Patterns expose signatures and compatibility metadata for systematic combination</td>
+</tr>
+<tr class="odd">
+<td><strong>Generativity</strong></td>
+<td>Architecture tools can search, recommend, and assist in blueprint construction</td>
+<td>Patterns are computable objects—they can be indexed, retrieved, and matched automatically</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core-tenets-to-remember" class="level4" data-number="30.1.5.3">
+<h4 data-number="30.1.5.3" class="anchored" data-anchor-id="core-tenets-to-remember"><span class="header-section-number">30.1.5.3</span> Core Tenets to Remember</h4>
+<ol type="1">
+<li><strong>A pattern is a reusable structural solution</strong>—not a component, framework, or architecture style.</li>
+<li><strong>The five-element grammar (Intent, Context, Forces, Structure, Consequences)</strong> is the universal template for describing any pattern.</li>
+<li><strong>Patterns are graphs</strong>—typed nodes, edges, and constraints that align with the System Ontology and blueprint model.</li>
+<li><strong>Pattern Signature = structural fingerprint</strong>—the minimal anchors (entity, relation, interface, data, constraint) needed to recognize a pattern.</li>
+<li><strong>Evidence + Confidence → probabilistic detection</strong>—pattern presence is rarely binary; confidence values keep detection honest.</li>
+<li><strong>Tags provide navigation</strong>—signatures answer <em>what</em>; tags answer <em>where, why, and with what</em>.</li>
+<li><strong>Patterns compose across four dimensions</strong>—interface, data, workflow, and constraint compatibility must be evaluated.</li>
+<li><strong>Patterns populate blueprint kernels</strong>—Goal, Capabilities, Components, Interfaces, Data, and Workflows.</li>
+<li><strong>The catalog must be curated</strong>—stability, generality, and recognizability are the admission criteria.</li>
+<li><strong>Patterns are discovered, not invented</strong>—the mining pipeline grounds the catalog in empirical architectural practice.</li>
+</ol>
 <p>Through this transformation, patterns enable blueprints to achieve three critical properties.</p>
 <p>First, patterns make blueprints <strong>reusable</strong>. Architects can construct new system designs by selecting patterns from the catalog rather than designing every structure from first principles.</p>
 <p>Second, patterns make blueprints <strong>composable</strong>. Because patterns expose structural signatures and compatibility metadata, multiple patterns can be combined into larger architectures.</p>
@@ -600,6 +692,7 @@ The security view identifies trust boundaries and policy enforcement mechanisms.
 <p>They transform architecture from isolated design artifacts into a structured body of reusable engineering knowledge.</p>
 
 
+</section>
 </section>
 </section>
 

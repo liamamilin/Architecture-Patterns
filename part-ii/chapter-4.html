@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>10&nbsp; Pattern Catalog Object Model – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-i/chapter-3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -480,6 +480,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#anti-patterns" id="toc-anti-patterns" class="nav-link" data-scroll-target="#anti-patterns"><span class="header-section-number">10.0.8</span> Anti-Patterns</a></li>
   <li><a href="#ontology-hooks" id="toc-ontology-hooks" class="nav-link" data-scroll-target="#ontology-hooks"><span class="header-section-number">10.0.9</span> Ontology Hooks</a></li>
   <li><a href="#from-object-model-to-computational-signature" id="toc-from-object-model-to-computational-signature" class="nav-link" data-scroll-target="#from-object-model-to-computational-signature"><span class="header-section-number">10.1</span> From Object Model to Computational Signature</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.2</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-catalog-entry-fields" id="toc-must-remember-catalog-entry-fields" class="nav-link" data-scroll-target="#must-remember-catalog-entry-fields"><span class="header-section-number">10.2.1</span> Must-Remember: Catalog Entry Fields</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles"><span class="header-section-number">10.2.2</span> Core Principles</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -596,8 +601,86 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Both layers are necessary. Without the object model, patterns would be meaningless identifiers. Without the signature, patterns would be unsearchable narratives.</p>
 <p>Together, they form a two-layer representation: descriptive knowledge for humans, structural anchors for machines. This dual representation is what enables the pattern catalog to support both human learning and automated retrieval simultaneously.</p>
+</section>
+<section id="summary" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.2</span> Summary</h2>
+<p>The Pattern Catalog Object Model transforms patterns from informal descriptions into <strong>standardized, structured catalog entries</strong> with well-defined fields.</p>
+<section id="must-remember-catalog-entry-fields" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="must-remember-catalog-entry-fields"><span class="header-section-number">10.2.1</span> Must-Remember: Catalog Entry Fields</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 22%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Purpose</th>
+<th>Key Question It Answers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pattern Identity</strong></td>
+<td>ID, Name, Type, Level</td>
+<td>What is this pattern called and how is it classified?</td>
+</tr>
+<tr class="even">
+<td><strong>Problem Statement</strong></td>
+<td>The architectural challenge addressed</td>
+<td>Why does this pattern exist?</td>
+</tr>
+<tr class="odd">
+<td><strong>Context &amp; Preconditions</strong></td>
+<td>Environmental conditions and assumptions</td>
+<td>When is this pattern applicable?</td>
+</tr>
+<tr class="even">
+<td><strong>Forces &amp; Constraints</strong></td>
+<td>Competing pressures and technical limitations</td>
+<td>What trade-offs shape this structure?</td>
+</tr>
+<tr class="odd">
+<td><strong>Structure</strong></td>
+<td>Components, interfaces, data, workflows</td>
+<td>How is the pattern built?</td>
+</tr>
+<tr class="even">
+<td><strong>Consequences</strong></td>
+<td>Benefits and trade-offs</td>
+<td>What price do I pay for adopting it?</td>
+</tr>
+<tr class="odd">
+<td><strong>Implementation Notes</strong></td>
+<td>Optional practical guidance</td>
+<td>How do I implement it in practice?</td>
+</tr>
+<tr class="even">
+<td><strong>Anti-Patterns</strong></td>
+<td>Common failure modes</td>
+<td>What should I avoid?</td>
+</tr>
+<tr class="odd">
+<td><strong>Ontology Hooks</strong></td>
+<td>Mapping to System Ontology entities and relations</td>
+<td>How does this connect to the formal ontology?</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core-principles" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="core-principles"><span class="header-section-number">10.2.2</span> Core Principles</h3>
+<ul>
+<li><strong>The object model is the descriptive layer</strong>—it helps humans understand what a pattern does, when it applies, and what trade-offs it introduces.</li>
+<li><strong>Structure is the operational core</strong>: the structural description (components, interfaces, data, workflows) is what enables mapping to blueprint elements.</li>
+<li><strong>Anti-patterns are first-class citizens</strong>: documenting failure modes is as important as documenting the correct structure.</li>
+<li><strong>Ontology Hooks bridge narrative and computation</strong>: they align pattern definitions with the formal ontology, enabling pattern detection and blueprint integration.</li>
+<li><strong>Object Model + Signature = two-layer representation</strong>: the object model (Chapter 4) provides descriptive knowledge; the signature (Chapter 5) provides computational anchors. Both are necessary.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

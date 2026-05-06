@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>9&nbsp; Pattern as Graph: The Computable Representation – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-i/chapter-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -475,7 +475,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#pattern-variants" id="toc-pattern-variants" class="nav-link" data-scroll-target="#pattern-variants"><span class="header-section-number">9.0.3</span> Pattern Variants</a></li>
   <li><a href="#pattern-instances" id="toc-pattern-instances" class="nav-link" data-scroll-target="#pattern-instances"><span class="header-section-number">9.0.4</span> Pattern Instances</a></li>
   <li><a href="#pattern-evidence" id="toc-pattern-evidence" class="nav-link" data-scroll-target="#pattern-evidence"><span class="header-section-number">9.0.5</span> Pattern Evidence</a></li>
-  <li><a href="#from-representation-to-specification" id="toc-from-representation-to-specification" class="nav-link" data-scroll-target="#from-representation-to-specification"><span class="header-section-number">9.1</span> From Representation to Specification</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-key-concepts" id="toc-must-remember-key-concepts" class="nav-link" data-scroll-target="#must-remember-key-concepts"><span class="header-section-number">9.1.1</span> Must-Remember: Key Concepts</a></li>
+  <li><a href="#core-principles" id="toc-core-principles" class="nav-link" data-scroll-target="#core-principles"><span class="header-section-number">9.1.2</span> Core Principles</a></li>
+  </ul></li>
+  <li><a href="#from-representation-to-specification" id="toc-from-representation-to-specification" class="nav-link" data-scroll-target="#from-representation-to-specification"><span class="header-section-number">9.2</span> From Representation to Specification</a></li>
   </ul>
 </nav>
     </div>
@@ -565,10 +570,68 @@ ul.task-list li input[type="checkbox"] {
 <p>Pattern evidence also plays a central role in the <strong>Blueprint Extraction</strong> process introduced in later volumes of the series. Extraction systems analyze repository signals to construct blueprint representations of systems. During this process, pattern signatures are used to infer which architectural patterns appear within the extracted blueprint.</p>
 <p>By defining patterns as graph structures with explicit signatures and evidence models, the framework enables patterns to be detected, indexed, and analyzed systematically.</p>
 <p>This transformation is essential for treating architectural patterns not merely as descriptive concepts but as <strong>operational elements of an architecture knowledge system</strong>.</p>
+</section>
+<section id="summary" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">9.1</span> Summary</h2>
+<p>Patterns are represented as <strong>typed structural graphs</strong>—the representation that makes patterns computable and enables automated analysis.</p>
+<section id="must-remember-key-concepts" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="must-remember-key-concepts"><span class="header-section-number">9.1.1</span> Must-Remember: Key Concepts</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 30%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Definition</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pattern Graph</strong></td>
+<td>Nodes (entities from System Ontology) + Edges (relationships) + Constraints (conditions)</td>
+<td>Aligns patterns with the same primitives used for blueprint descriptions</td>
+</tr>
+<tr class="even">
+<td><strong>Pattern Signature</strong></td>
+<td>The minimal set of nodes, edges, and constraints that uniquely identifies a pattern</td>
+<td>Enables <strong>subgraph matching</strong>—detecting patterns within larger blueprint graphs</td>
+</tr>
+<tr class="odd">
+<td><strong>Pattern Variant</strong></td>
+<td>A modification of the base pattern via optional/alternative components or relations</td>
+<td>Captures real-world diversity without fragmenting the catalog</td>
+</tr>
+<tr class="even">
+<td><strong>Pattern Instance</strong></td>
+<td>A concrete occurrence of a pattern within a specific system</td>
+<td>Grounds the catalog in empirical architectural practice</td>
+</tr>
+<tr class="odd">
+<td><strong>Pattern Evidence</strong></td>
+<td>Observable signals (dependencies, config files, infra manifests) that support pattern detection</td>
+<td>Provides traceability and transparency for automated analysis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core-principles" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="core-principles"><span class="header-section-number">9.1.2</span> Core Principles</h3>
+<ul>
+<li><strong>Pattern detection = subgraph matching</strong>: the blueprint graph is searched for structural configurations matching a pattern’s signature.</li>
+<li><strong>Signatures are minimal, not exhaustive</strong>: they capture only the anchors needed to recognize the pattern. Strong and weak indicators are distinguished to support probabilistic detection.</li>
+<li><strong>Patterns support variants through OR/XOR slots</strong>: this accommodates different implementation choices while preserving a stable core identity.</li>
+<li><strong>Evidence + Confidence → probabilistic detection</strong>: pattern presence is not binary; confidence values weighted by evidence strength enable ranking and human review.</li>
+<li><strong>Graph representation bridges narrative and computation</strong>: the same pattern can be understood by humans (narrative) and analyzed by machines (graph).</li>
+</ul>
 <hr>
 </section>
-<section id="from-representation-to-specification" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="from-representation-to-specification"><span class="header-section-number">9.1</span> From Representation to Specification</h2>
+</section>
+<section id="from-representation-to-specification" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="from-representation-to-specification"><span class="header-section-number">9.2</span> From Representation to Specification</h2>
 <p>The graph-based representation introduced in this chapter provides the conceptual foundation for treating patterns as computable objects. However, to build a practical pattern library, this representation must be formalized into a concrete specification that defines exactly how patterns are stored, indexed, and retrieved.</p>
 <p><strong>Part II: Pattern Catalog Schema</strong> performs this formalization. It transforms the conceptual framework of Part I into concrete specifications that can be implemented in databases, knowledge graphs, or document-based repositories.</p>
 <p>The transition from Part I to Part II involves three key steps:</p>

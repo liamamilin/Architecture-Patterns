@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>26&nbsp; Pattern Compatibility and Conflict Types – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-v/chapter-19.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -478,6 +478,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#constraint-conflicts" id="toc-constraint-conflicts" class="nav-link" data-scroll-target="#constraint-conflicts"><span class="header-section-number">26.1.4</span> Constraint Conflicts</a></li>
   <li><a href="#compatibility-metadata" id="toc-compatibility-metadata" class="nav-link" data-scroll-target="#compatibility-metadata"><span class="header-section-number">26.1.5</span> Compatibility Metadata</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">26.2</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-the-four-conflict-types" id="toc-must-remember-the-four-conflict-types" class="nav-link" data-scroll-target="#must-remember-the-four-conflict-types"><span class="header-section-number">26.2.1</span> Must-Remember: The Four Conflict Types</a></li>
+  <li><a href="#must-remember-compatibility-metadata" id="toc-must-remember-compatibility-metadata" class="nav-link" data-scroll-target="#must-remember-compatibility-metadata"><span class="header-section-number">26.2.2</span> Must-Remember: Compatibility Metadata</a></li>
+  <li><a href="#key-insight" id="toc-key-insight" class="nav-link" data-scroll-target="#key-insight"><span class="header-section-number">26.2.3</span> Key Insight</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -570,9 +576,94 @@ ul.task-list li input[type="checkbox"] {
 <p>Conversely, certain patterns may declare incompatibilities or cautionary conditions when used with other architectural structures.</p>
 <p>This metadata does not implement pattern composition directly. Instead, it provides the <strong>structural information necessary for composition systems</strong> to evaluate whether patterns can be combined safely.</p>
 <p>The algorithms and mechanisms for resolving these relationships are introduced in the later volume on <strong>System Composition</strong>.</p>
-<hr>
-<p>The identification of compatibility and conflict types is a critical step toward treating architecture patterns as composable knowledge units.</p>
-<p>By explicitly describing how patterns interact with one another, the pattern catalog prepares patterns to participate in systematic architecture design processes where systems are constructed through the careful combination of compatible structural patterns.</p>
+</section>
+</section>
+<section id="summary" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">26.2</span> Summary</h2>
+<p>When multiple patterns are combined, their assumptions may conflict. Understanding these conflict categories is essential for building coherent composed architectures.</p>
+<section id="must-remember-the-four-conflict-types" class="level3" data-number="26.2.1">
+<h3 data-number="26.2.1" class="anchored" data-anchor-id="must-remember-the-four-conflict-types"><span class="header-section-number">26.2.1</span> Must-Remember: The Four Conflict Types</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 34%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Conflict Type</th>
+<th>Root Cause</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Interface</strong></td>
+<td>Incompatible interaction models or communication protocols</td>
+<td>Synchronous request-response pattern × asynchronous event pattern</td>
+</tr>
+<tr class="even">
+<td><strong>Data</strong></td>
+<td>Incompatible assumptions about data ownership, consistency, or lifecycle</td>
+<td>Microservices (database per service) × integration pattern (shared repository)</td>
+</tr>
+<tr class="odd">
+<td><strong>Workflow</strong></td>
+<td>Multiple patterns attempting to control execution flow</td>
+<td>Centralized orchestration × decentralized choreography</td>
+</tr>
+<tr class="even">
+<td><strong>Constraint</strong></td>
+<td>Incompatible operational requirements or system guarantees</td>
+<td>Aggressive retry (resilience) × strict rate limits (security)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-compatibility-metadata" class="level3" data-number="26.2.2">
+<h3 data-number="26.2.2" class="anchored" data-anchor-id="must-remember-compatibility-metadata"><span class="header-section-number">26.2.2</span> Must-Remember: Compatibility Metadata</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metadata Type</th>
+<th>What It Declares</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Compatible with</strong></td>
+<td>Patterns that work well together (e.g., workflow engine depends on job queue)</td>
+</tr>
+<tr class="even">
+<td><strong>Requires</strong></td>
+<td>Supporting patterns that must be present</td>
+</tr>
+<tr class="odd">
+<td><strong>Conflicts with</strong></td>
+<td>Patterns that introduce structural tensions</td>
+</tr>
+<tr class="even">
+<td><strong>Caution</strong></td>
+<td>Conditions where combination is possible but requires careful design</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-insight" class="level3" data-number="26.2.3">
+<h3 data-number="26.2.3" class="anchored" data-anchor-id="key-insight"><span class="header-section-number">26.2.3</span> Key Insight</h3>
+<ul>
+<li><strong>Pattern composition is the ultimate goal</strong>: individual patterns are building blocks; the real architecture emerges from their combination.</li>
+<li><strong>Compatibility metadata prepares for composition</strong>: it doesn’t resolve conflicts automatically but provides the structural information needed for composition systems to detect and manage them.</li>
+<li><strong>Resolution strategies exist for each conflict type</strong>: interface gateways for interface conflicts, data ownership models for data conflicts, hierarchical control for workflow conflicts, and explicit prioritization for constraint conflicts.</li>
+<li><strong>Part VI establishes readiness, not algorithms</strong>: the actual composition algorithms (merge, embed, orchestrate) are deferred to the <em>System Composition</em> volume.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Patterns are designed to be combined—but combination requires care.</strong> Every pattern pairing should be evaluated across all four conflict dimensions before committing to a composed architecture.</p>
+</blockquote>
 
 
 </section>

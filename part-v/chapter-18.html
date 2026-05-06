@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>24&nbsp; Resilience Pattern Set – Architecture_Patterns</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../part-v/chapter-17.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Architecture_Patterns</a> 
     </div>
@@ -475,6 +475,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bulkhead-and-isolation" id="toc-bulkhead-and-isolation" class="nav-link" data-scroll-target="#bulkhead-and-isolation"><span class="header-section-number">24.0.3</span> Bulkhead and Isolation</a></li>
   <li><a href="#graceful-degradation" id="toc-graceful-degradation" class="nav-link" data-scroll-target="#graceful-degradation"><span class="header-section-number">24.0.4</span> Graceful Degradation</a></li>
   <li><a href="#pattern-signature" id="toc-pattern-signature" class="nav-link" data-scroll-target="#pattern-signature"><span class="header-section-number">24.0.5</span> Pattern Signature</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">24.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#must-remember-the-four-resilience-mechanisms" id="toc-must-remember-the-four-resilience-mechanisms" class="nav-link" data-scroll-target="#must-remember-the-four-resilience-mechanisms"><span class="header-section-number">24.1.1</span> Must-Remember: The Four Resilience Mechanisms</a></li>
+  <li><a href="#must-remember-key-rules" id="toc-must-remember-key-rules" class="nav-link" data-scroll-target="#must-remember-key-rules"><span class="header-section-number">24.1.2</span> Must-Remember: Key Rules</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -553,8 +558,63 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p>The resilience pattern set provides essential safeguards for operating systems in unreliable environments.</p>
 <p>By incorporating retry mechanisms, failure detection, isolation boundaries, and graceful degradation strategies, these patterns enable systems to maintain service continuity even when individual components fail.</p>
+</section>
+<section id="summary" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">24.1</span> Summary</h2>
+<p>Resilience patterns are <strong>cross-cutting structural safeguards</strong> that enable systems to withstand and recover from failures. They do not eliminate failures—they limit their scope and maintain acceptable behavior under degraded conditions.</p>
+<section id="must-remember-the-four-resilience-mechanisms" class="level3" data-number="24.1.1">
+<h3 data-number="24.1.1" class="anchored" data-anchor-id="must-remember-the-four-resilience-mechanisms"><span class="header-section-number">24.1.1</span> Must-Remember: The Four Resilience Mechanisms</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>What It Does</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Retry + Backoff</strong></td>
+<td>Re-attempts failed operations with progressively increasing delays</td>
+<td>Transient failures (network blips, momentary resource exhaustion)</td>
+</tr>
+<tr class="even">
+<td><strong>Circuit Breaker</strong></td>
+<td>Halts requests to a failing dependency when errors exceed a threshold; tests recovery with probe requests</td>
+<td>Preventing cascading failures across service dependencies</td>
+</tr>
+<tr class="odd">
+<td><strong>Bulkhead</strong></td>
+<td>Isolates resources (thread pools, connection pools, execution environments) so one subsystem’s failure doesn’t starve others</td>
+<td>Multi-tenant systems, mixed workloads with different criticality</td>
+</tr>
+<tr class="even">
+<td><strong>Graceful Degradation</strong></td>
+<td>Reduces functionality while preserving core capabilities when full operation isn’t possible</td>
+<td>Any system where partial availability is better than total outage</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="must-remember-key-rules" class="level3" data-number="24.1.2">
+<h3 data-number="24.1.2" class="anchored" data-anchor-id="must-remember-key-rules"><span class="header-section-number">24.1.2</span> Must-Remember: Key Rules</h3>
+<ul>
+<li><strong>Retries must always use backoff</strong>: naive retries amplify failures by flooding struggling services. Exponential backoff gives the target time to recover.</li>
+<li><strong>Circuit breakers protect the whole system</strong>: the cost of a trip (temporarily degraded functionality) is far less than the cost of a cascading outage.</li>
+<li><strong>Bulkheads enforce resource fairness</strong>: without them, a single misbehaving subsystem can exhaust shared resources and bring down the entire system.</li>
+<li><strong>Graceful degradation requires explicit design</strong>: identify essential vs.&nbsp;non-essential capabilities <em>before</em> a failure occurs.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Assume failures will happen—design for them.</strong> Retry + backoff handles transients, circuit breakers prevent cascades, bulkheads contain damage, and graceful degradation preserves core functionality when things go wrong.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
